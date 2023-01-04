@@ -35,7 +35,7 @@ To have a better approach to the knowledge of how the code works, the different 
   
 Flowchart
 ----------------------
-Flowchart is a diagram that shows each step of the progress of a program in a sequential order. In this case, the flowchart present is the one of the 'assignment.py' file.
+Flowchart is a diagram that shows each step of the progress of a program in a sequential order. In this case, the flowchart present is the one of the first part of the assigment. The one at the left corresponds to msg_node and the one at the right to assigmnet_2_2022_node.
 ![alt text](https://github.com/isacg5/research_track/blob/main/resources/flowchart.png)
 
 Pseudocode of msg_node
