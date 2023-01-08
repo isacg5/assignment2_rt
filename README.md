@@ -37,7 +37,9 @@ Flowchart
 ----------------------
 Flowchart is a diagram that shows each step of the progress of a program in a sequential order. In this case, the flowchart present is the one of the first part of the assigment. The one at the left corresponds to msg_node and the one at the right to assigmnet_2_2022_node.
 
-![](https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart1.png)  ![](https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart2.png)
+<img src="https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart1.png" width="425"/> <img src="[image2.png](https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart2.png)" width="200"/> 
+
+![]()  ![]()
 
 Pseudocode of msg_node
 ----------------------
