@@ -14,9 +14,9 @@ How to run it
 After include the repository in your workspace and do catkin_make
 
 ```bash
-$ roslaunch assignment_2_2022 assignment1.launch vel_pub:=x
+$ roslaunch assignment_2_2022 assignment2.launch vel_pub:=x
 ```
-Where x is the rate that the third node will execute.
+Where x is the frequency rate that the third node will execute.
 
 Functions in the code
 ----------------------
