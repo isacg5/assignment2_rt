@@ -6,49 +6,84 @@
 #include <actionlib/client/terminal_state.h>
 #include <assignment_2_2022/PlanningAction.h>
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
 
 using namespace std;
 
+int i_x, i_y;
+int cancel_goal = 0;
+int goal_stablished = 0;
+
+void get_user_input()
+{
+	goal_stablished = 0;
+	string user_x, user_y;
+	cout << "Enter goal introducing 'x' position or enter 'c' to cancel de goal: ";
+	cin >> user_x;
+
+	try
+	{
+		i_x = stoi(user_x);
+		cout << "Enter goal introducing 'y' position: ";
+		goal_stablished = 1;
+	}
+	catch (invalid_argument const &e)
+	{
+		if ((user_x.compare("c")) == 0)
+		{
+			cancel_goal = 1;
+			ROS_INFO("Cancelling goal...");
+		}
+	}
+
+	if (goal_stablished == 1)
+	{
+		cin >> user_y;
+		goal_stablished = 0;
+		try
+		{
+			i_y = stoi(user_y);
+			goal_stablished = 1;
+		}
+		catch (invalid_argument const &e)
+		{
+		}
+	}
+}
 int main(int argc, char **argv)
 {
+
 	ros::init(argc, argv, "action_node");
-	
+
 	actionlib::SimpleActionClient<assignment_2_2022::PlanningAction> ac("/reaching_goal", true);
 
-	int user_x, user_y;
-	cout << "Enter goal following the format 'x' 'y': ";
-	cin >> user_x;
-	cin >> user_y;
-
 	ac.waitForServer(); // wait for the action server to start
-	ROS_INFO("Action server started, sending goal (%i,%i).", user_x, user_y);
-	
-	// send a goal to the action
-	assignment_2_2022::PlanningGoal goal;
-	goal.target_pose.pose.position.x = user_x;
-	goal.target_pose.pose.position.y = user_y;
-	goal.target_pose.pose.position.z = 0;
-	ac.sendGoal(goal);
-
-	// wait for the action to return
-	bool finished_before_timeout = ac.waitForResult(ros::Duration(30.0));
-
-	if (finished_before_timeout)
-	{
-		actionlib::SimpleClientGoalState state = ac.getState();
-		ROS_INFO("Action finished: %s", state.toString().c_str());
-	}
-	else
-	{
-		ROS_INFO("Action did not finish before the time out.");
-		ac.cancelGoal();
-		ROS_INFO("Goal has been cancelled");
-	}
 
 	ros::Rate rate(1);
 
 	while (ros::ok())
 	{
+		get_user_input();
+		
+		if (goal_stablished == 1)
+		{
+			ROS_INFO("Action server started, sending goal (%i,%i).", i_x, i_y);
+			// send a goal to the action
+			assignment_2_2022::PlanningGoal goal;
+			goal.target_pose.pose.position.x = i_x;
+			goal.target_pose.pose.position.y = i_y;
+			goal.target_pose.pose.position.z = 0;
+			ac.sendGoal(goal);
+		}
+
+		if (cancel_goal == 1)
+		{
+			cancel_goal = 0;
+			ac.cancelGoal();
+			ROS_INFO("Goal has been cancelled");
+		}
+
 		ros::spinOnce();
 		rate.sleep();
 	}

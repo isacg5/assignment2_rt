@@ -10,7 +10,8 @@
     <node pkg="assignment_2_2022" type="srv_client_node" name="srv_client_node" output="screen" />
     <node pkg="assignment_2_2022" type="srv_server_node" name="srv_server_node" output="screen" />
     <node pkg="assignment_2_2022" type="msg_node" name="msg_node" output="screen"/>
-    <node pkg="assignment_2_2022" type="action_node" name="action_node" output="screen"/>
+    <node pkg="assignment_2_2022" type="action_node" name="action_node" output="screen" launch-prefix="gnome-terminal --command"/>
+    <node pkg="assignment_2_2022" type="subs_node" name="subs_node" output="screen"/>
 
     <!-- <param name="vel_publishing" type="double" value= "1.0" /> -->
     <arg name="vel_pub"/>
