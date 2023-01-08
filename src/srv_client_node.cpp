@@ -14,6 +14,7 @@ int main(int argc, char **argv)
 
     while (ros::ok())
     {
+        // Print the number of goals reached and cancelled obtained through the service /goals
         client.call(server_result);
         ROS_INFO("[REACHED: %i] [CANCELLED: %i]", server_result.response.reached, server_result.response.cancelled);
         ros::spinOnce();

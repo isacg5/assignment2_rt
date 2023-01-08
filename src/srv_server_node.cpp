@@ -7,6 +7,7 @@ int counter_cancelled;
 
 void subsCallback(const assignment_2_2022::PlanningActionResult::ConstPtr &msg)
 {
+    // Update the counter of the goals reached and cancelled by subscribing to /reaching_goal action created
     int result;
     result = msg->status.status;
 
@@ -20,6 +21,7 @@ void subsCallback(const assignment_2_2022::PlanningActionResult::ConstPtr &msg)
 
 bool goalsCallback(assignment_2_2022::Goals::Request &req, assignment_2_2022::Goals::Response &res)
 {
+    // Update the service server with the new values
     res.reached = counter_reached;
     res.cancelled = counter_cancelled;
 

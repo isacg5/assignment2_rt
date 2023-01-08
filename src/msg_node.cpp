@@ -8,6 +8,7 @@ float y;
 float vel_x;
 float vel_z;
 
+// Callback that suscribes all the time to /odom to get the positions and velocities of the robot
 void odomCallback(const nav_msgs::Odometry::ConstPtr &msg)
 {
     x = msg->pose.pose.position.x;
@@ -31,6 +32,7 @@ int main(int argc, char **argv)
 
     while (ros::ok())
     {
+        // Publish the values obtained in the subscription to /odom to a new topic called /robot_info
         assignment_2_2022::Info new_info;
         new_info.x = x;
         new_info.y = y;

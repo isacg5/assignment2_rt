@@ -17,17 +17,20 @@ int goal_stablished = 0;
 
 void get_user_input()
 {
+	// Ask the user for the goal position or to cancel the goal
 	goal_stablished = 0;
 	string user_x, user_y;
 	cout << "Enter goal introducing 'x' position or enter 'c' to cancel de goal: ";
 	cin >> user_x;
 
+	// If the argument introduced is a number, ask for the second coordinate
 	try
 	{
 		i_x = stoi(user_x);
 		cout << "Enter goal introducing 'y' position: ";
 		goal_stablished = 1;
 	}
+	// If not, check if is a c to cancel the goal
 	catch (invalid_argument const &e)
 	{
 		if ((user_x.compare("c")) == 0)
@@ -51,9 +54,9 @@ void get_user_input()
 		}
 	}
 }
+
 int main(int argc, char **argv)
 {
-
 	ros::init(argc, argv, "action_node");
 
 	actionlib::SimpleActionClient<assignment_2_2022::PlanningAction> ac("/reaching_goal", true);
@@ -65,7 +68,8 @@ int main(int argc, char **argv)
 	while (ros::ok())
 	{
 		get_user_input();
-		
+
+		// If goal was entered, send the new goal to the action client
 		if (goal_stablished == 1)
 		{
 			ROS_INFO("Action server started, sending goal (%i,%i).", i_x, i_y);
@@ -77,6 +81,7 @@ int main(int argc, char **argv)
 			ac.sendGoal(goal);
 		}
 
+		// If goal was cancelled, send cancel to the action client
 		if (cancel_goal == 1)
 		{
 			cancel_goal = 0;

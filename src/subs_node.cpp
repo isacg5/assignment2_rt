@@ -29,8 +29,10 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "subs_node");
 
+    // Get the parameter obtained in the launch file for the frequency of execution of the node
     float frequency;
     ros::param::get("/vel_publishing", frequency);
+
     ros::NodeHandle n;
     ros::Subscriber sub = n.subscribe("/robot_info", 1, robotInfoCallback);
     ros::Subscriber sub_goal = n.subscribe("/reaching_goal/goal", 1, goalCallback);
@@ -42,6 +44,7 @@ int main(int argc, char **argv)
 
     while (ros::ok())
     {
+        // Get the euclidean distance between the current position of the robot and the goal, by subscribing to the action clinet and the topic created for the custom message
         int x = goal_x - current_x;
         int y = goal_y - current_y;
         euclidean_distance = sqrt(pow(x, 2) + pow(y, 2));
