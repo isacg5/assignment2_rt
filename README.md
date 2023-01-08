@@ -28,7 +28,7 @@ To have a better approach to the knowledge of how the code works, the different 
 - launch folder: Contains the launcher that let the user launch all the nodes with one command.
 - src folder: Includes all the nodes created to reach the goal of the assigment. Are explained here below:
   * msg_node: Is a node that is part from the first requirement. This node is subscribing to odom to get the position x and y and linear and angular velocities and publishing this information in the customized message through the topic /robot_info.
-  * assigment_2_2022_node: Is the other part from the first requirement. Through a user infterface, gets the goal position of the robot or the to cancel the goal, and through the action created updates the action.
+  * assigment_2_2022_node: Is the other part from the first requirement. Through the user input, gets the goal position of the robot or the to cancel the goal, and through the action created /reaching_goal, updates the action.
   * srv_server_node: Is part of the second requirement og the assignment. By subscribing to the action created in the first requirement, implements a counter with the goals reached or cancelled, and updates the service with this values.
   * srv_client_node: Is the other part of the second requirement. By simply calling the service gets and print the amount of goals reached and cancelled.
   * subs_node: The third part of the assigment is composed by this node. It is subscribing to the topic /robot_info created with the custom message to access to the robot information and subscribing as well to the action created to get the coordinated of the goal. With these values is calculating the euclidean distance that the robot miss until reach the goal. This node also has a paramenter that the user has to introduce when launching the assigment called vel_pub that corresponds to the execution frequency of this node.
@@ -37,12 +37,9 @@ Flowchart
 ----------------------
 Flowchart is a diagram that shows each step of the progress of a program in a sequential order. In this case, the flowchart present is the one of the first part of the assigment. The one at the left corresponds to msg_node and the one at the right to assigmnet_2_2022_node.
 
-      msg_node            |   assigmnet_2_2022_node
-:-------------------------:|:-------------------------:
-![](https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart1.png)  |  ![](https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart2.png)
-
-
-![alt text](https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart.png)
+<p align="center">
+<img src="https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart1.png" width="300"/> <img src="https://github.com/isacg5/assignment2_rt/blob/main/resources/flowchart2.png" width="200"/>
+</p>
 
 Pseudocode of msg_node
 ----------------------
