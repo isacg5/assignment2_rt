@@ -1,4 +1,4 @@
-Python Robotics Simulator
+ROS
 ================================
 
 This is the second assignment of Research Track course, based on simple implementations using ROS.
